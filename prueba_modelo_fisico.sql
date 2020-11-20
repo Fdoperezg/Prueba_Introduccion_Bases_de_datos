@@ -138,8 +138,7 @@ ON clientes.id_cliente = facturas.id_cliente
 WHERE precio_total > 100;
 
 --Tercera consulta: ¿Cuántos clientes han comprado el producto 6?
-SELECT COUNT(DISTINCT id_cliente) FROM facturas 
-WHERE numero_factura IN
-    (SELECT numero_factura FROM facturas_productos 
-    WHERE id_producto=6
-);
+SELECT COUNT(DISTINCT clientes.id_cliente) FROM clientes 
+INNER JOIN facturas ON clientes.id_cliente = facturas.id_cliente 
+INNER JOIN Facturas_Productos ON facturas.numero_factura = Facturas_Productos.numero_factura 
+WHERE Facturas_Productos.id_producto = 6;
